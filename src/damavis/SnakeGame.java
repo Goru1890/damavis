@@ -45,7 +45,6 @@ public class SnakeGame {
 
 		if (end[0] == snake[0][0] && end[1] == snake[0][1] && currentPath.size() == depth) {
 
-			// System.out.println("Caso base");
 			return 1;
 
 		} else {
@@ -160,36 +159,5 @@ public class SnakeGame {
 
 	}
 
-	public static void main(String[] args) {
-
-		test3();
-
-	}
-
-	public static void test1() {
-
-		Integer[] board = { 4, 3 };
-		Integer[][] snake = { { 2, 2 }, { 3, 2 }, { 3, 1 }, { 3, 0 }, { 2, 0 }, { 1, 0 }, { 0, 0 } };
-		SnakeGame snakeGame = new SnakeGame();
-		System.out.println(snakeGame.path(board, snake, 3));
-
-	}
-
-	public static void test2() {
-
-		Integer[] board = { 2, 3 };
-		Integer[][] snake = { { 0, 2 }, { 0, 1 }, { 0, 0 }, { 1, 0 }, { 1, 1 }, { 1, 2 } };
-		SnakeGame snakeGame = new SnakeGame();
-		System.out.println(snakeGame.path(board, snake, 10));
-
-	}
-
-	public static void test3() {
-
-		Integer[] board = { 10, 10 };
-		Integer[][] snake = { { 5, 5 }, { 5, 4 }, { 4, 4 }, { 4, 5 } };
-		SnakeGame snakeGame = new SnakeGame();
-		System.out.println(snakeGame.path(board, snake, 4));
-
-	}
+	
 }
