@@ -9,6 +9,7 @@ public class SnakeGame {
 
 	public SnakeGame() {
 
+		//List of possible directions: Left, Right, Down, Up.
 		this.direction = new ArrayList<>();
 		direction.add("L");
 		direction.add("R");
@@ -17,6 +18,7 @@ public class SnakeGame {
 
 	}
 
+	//Iterate all the possible final cells of the snake's path.
 	public Integer path(Integer[] board, Integer[][] snake, Integer depth) {
 
 		int count = 0;
@@ -38,11 +40,14 @@ public class SnakeGame {
 
 	}
 
+	//Calculate all the possible paths from the snake's head to the final end cell.
 	public Integer possiblePaths(Integer[] board, Integer[][] snake, List<String> currentPath, Integer[] end,
 			Integer depth) {
 
+		//acumulator 
 		Integer caminos = 0;
 
+		//base case when the snake arrives the end cell and the path has the desire depth
 		if (end[0] == snake[0][0] && end[1] == snake[0][1] && currentPath.size() == depth) {
 
 			return 1;
@@ -51,6 +56,7 @@ public class SnakeGame {
 
 			Integer[] lastCell = snake[0];
 
+			//Iterate all the possible directions
 			for (int x = -1; x <= 1; x = x + 1) {
 
 				for (int y = -1; y <= 1; y = y + 1) {
@@ -61,6 +67,7 @@ public class SnakeGame {
 
 						Integer[][] updatedSnake = updateSnake(snake, neighbor);
 
+						//check if we can move to that neighbor
 						if (isValidSnake(updatedSnake, board)
 								&& (currentPath.size() < depth || currentPath.isEmpty())) {
 
@@ -85,7 +92,10 @@ public class SnakeGame {
 								currentPath.add(direction.get(2));
 							}
 
+							//recursive function finding new possible directions and paths
 							Integer temp = possiblePaths(board, snake, currentPath, end, depth);
+							
+							//removing first index of the snake and the last index of the current path
 							int removeIndex = 0;
 
 							for (int i = removeIndex; i < snake.length - 1; i++) {
@@ -128,12 +138,14 @@ public class SnakeGame {
 		Boolean res = true;
 		Integer count;
 
+		//check if any cell of the snake is out of the board
 		for (Integer[] cells : snake) {
 
 			res = res && cells[0] < board[0] && cells[0] >= 0;
 			res = res && cells[1] < board[1] && cells[1] >= 0;
 		}
 
+		//check if any cell of the snake is duplicated. 
 		for (Integer[] cells : snake) {
 
 			count = 0;
